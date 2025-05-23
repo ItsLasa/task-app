@@ -1,10 +1,10 @@
-// backend/routes/pdfGenerator.js
+
 const express = require("express");
 const PDFDocument = require("pdfkit");
 const router = express.Router();
 
 router.post("/generate-task-pdf", (req, res) => {
-  const task = req.body.task; // one task object
+  const task = req.body.task; 
 
   if (!task) {
     return res.status(400).send("Task data is required.");
