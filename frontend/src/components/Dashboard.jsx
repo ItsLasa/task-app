@@ -33,9 +33,24 @@ const Dashboard = () => {
           </>
         )}
 
-        {!isAuthenticated && (
-          <h1 className="text-xl font-semibold text-gray-700">Welcome to the Task App</h1>
-        )}
+{!isAuthenticated && (
+  <div className="text-center ">
+    <h1 className="text-2xl font-semibold text-gray-800 mb-4">Welcome to the Task App</h1>
+    <p className="text-gray-600 mb-6">Manage your daily tasks efficiently and stay productive.</p>
+    
+    <img
+      src="https://cdn-icons-png.flaticon.com/512/3176/3176366.png"
+      alt="Task Management"
+      className="mx-auto mb-6 w-48 h-48"
+    />
+
+    
+  </div>
+)}
+
+
+
+        
       </div>
 
       {/* Show summary & buttons only when signed in */}
