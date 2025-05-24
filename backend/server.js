@@ -4,6 +4,8 @@ const cors = require('cors');
 const TodoModel = require('./models/todoList');
 const pdfRoute = require("./routes/pdfGenerator");
 const bodyParser = require("body-parser");
+require('dotenv').config();
+
 
 const app = express();
 app.use(cors());
@@ -12,9 +14,13 @@ app.use(bodyParser.json());
 
 
 // Connect to MongoDB
-mongoose.connect("mongodb+srv://manoj:admin@cluster0.vbydrl3.mongodb.net/todos?retryWrites=true&w=majority&appName=Cluster0")
+// mongoose.connect("mongodb+srv://manoj:admin@cluster0.vbydrl3.mongodb.net/todos?retryWrites=true&w=majority&appName=Cluster0")
+//     .then(() => console.log('Connected to MongoDB'))
+//     .catch((err) => console.error("MongoDB connection error:", err));
+mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('Connected to MongoDB'))
     .catch((err) => console.error("MongoDB connection error:", err));
+
 
 app.use("/", pdfRoute);
 
@@ -34,7 +40,7 @@ app.post("/addTodoList", (req, res) => {
         description,
         assigned,
         deadline,
-        status: status || 'Pending' // Default to "Pending" if not provided
+        status: status || 'Pending' 
     })
     .then((todo) => res.json(todo))
     .catch((err) => res.status(500).json(err));
