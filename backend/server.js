@@ -14,9 +14,6 @@ app.use(bodyParser.json());
 
 
 // Connect to MongoDB
-// mongoose.connect("mongodb+srv://manoj:admin@cluster0.vbydrl3.mongodb.net/todos?retryWrites=true&w=majority&appName=Cluster0")
-//     .then(() => console.log('Connected to MongoDB'))
-//     .catch((err) => console.error("MongoDB connection error:", err));
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('Connected to MongoDB'))
     .catch((err) => console.error("MongoDB connection error:", err));
@@ -64,7 +61,7 @@ app.put("/updateTodoList/:id", (req, res) => {
         .catch((err) => res.status(500).json(err));
 });
 
-// Delete a todo item
+
 app.delete("/deleteTodoList/:id", (req, res) => {
     const id = req.params.id;
 
@@ -73,7 +70,7 @@ app.delete("/deleteTodoList/:id", (req, res) => {
         .catch((err) => res.status(500).json(err));
 });
 
-// Start the server
+
 app.listen(3001, () => {
     console.log('Server running on port 3001');
 });
